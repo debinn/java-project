@@ -13,7 +13,7 @@ pipeline{
     stage('WRITE'){
       steps{
         echo "In WRITE stage and job name is $JOB_NAME"
-        sh 'echo "$BUILD_NUMBER" >> build_number'
+        sh 'echo $BUILD_NUMBER >> build_number'
       }
     }
 
