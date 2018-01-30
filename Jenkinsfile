@@ -23,15 +23,16 @@ pipeline{
       }
     }
     
-    stage('DEPLOY'){
+    stage('UNIT TESTS'){
       steps{
-        sh 'ant -f build.xml -v' 
+        sh 'ant -f test.xml -v' 
+        junit 'reports/result.xml'
       }
     }
     
-    stage('RESULT'){
+    stage('DEPLOY'){
       steps{
-        sh 'java jar dist/rectangle.jar 4 5'
+        sh 'ant -f build.xml -v' 
       }
     }
   }
