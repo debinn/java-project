@@ -13,14 +13,19 @@ pipeline{
     stage('WRITE'){
       steps{
         echo "In WRITE stage and job name is $JOB_NAME"
-        sh 'echo "$BUILD_NUMBER" >> $WORKSPACE/build_number.txt'
+        sh 'echo "$BUILD_NUMBER" >> build_number'
       }
     }
 
     stage('READ'){
       steps{
-        echo "cat $WORKSPACE/build_number.txt"
+        sh 'cat build_number'
       }
     }
   }
+  post {
+        success {
+            archiveArtifacts artifacts: 'build_number', fingerprint: true
+        }
+    }
 }
