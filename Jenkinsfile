@@ -22,6 +22,12 @@ pipeline{
         sh 'cat build_number'
       }
     }
+    
+    stage('DEPLOY'){
+      steps{
+        sh 'ant -f build.xml -v' 
+      }
+    }
   }
   post {
         success {
