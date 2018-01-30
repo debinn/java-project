@@ -30,9 +30,15 @@ pipeline{
       }
     }
     
-    stage('DEPLOY'){
+    stage('BUILD'){
       steps{
         sh 'ant -f build.xml -v' 
+      }
+    }
+    
+     stage('DEPLOY'){
+      steps{
+        sh 'cp dist/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangle/all/' 
       }
     }
   }
