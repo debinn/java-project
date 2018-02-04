@@ -39,6 +39,7 @@ pipeline{
      stage('DEPLOY'){
       steps{
         sh 'ls -la dist/'
+        sh 'BUILD_NUMBER=env.BUILD_NUMBER'
         sh 'cp dist/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangle/all/' 
       }
     }
